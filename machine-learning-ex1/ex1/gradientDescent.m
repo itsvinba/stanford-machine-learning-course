@@ -18,19 +18,15 @@ for iter = 1:num_iters
     %
     
     %{
-    for i = 1:m
-      meanTerm1(i) = (X*theta-y)(i) * X(i,1);
-      meanTerm2(i) = (X*theta-y)(i) * X(i,2);
-    end
-  
-    theta1 = theta(1) - alpha/m * sum( meanTerm1(1:m) );
-    theta2 = theta(2) - alpha/m * sum( meanTerm1(1:m) );
-
-    theta = [theta1; theta2];
+    x0 = X(:,1);
+    x1 = X(:,2);
+    Hypothesis = theta(1) + (theta(2)*x);
     %}
     
-    theta(1) = theta(1) - alpha/m * sum( (X*theta-y).*X(:,1)(1:m) );
-    theta(2) = theta(2) - alpha/m * sum( (X*theta-y).*X(:,2)(1:m) );
+    theta_0 = theta(1) - alpha/m * sum( (X*theta-y).*X(:,1)(1:m) );
+    theta_1 = theta(2) - alpha/m * sum( (X*theta-y).*X(:,2)(1:m) );
+    
+    theta = [theta_0; theta_1];
   
     % ============================================================
 
@@ -39,6 +35,5 @@ for iter = 1:num_iters
     % J_history(iter)
 
 end
-    plot(J_history);
 
 end
